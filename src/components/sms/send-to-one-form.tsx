@@ -40,7 +40,6 @@ export function SendToOneForm() {
               description: response.status.description,
             })
           }
-          console.log(response)
         } catch (error) {
           toast.error(
             error instanceof Error
