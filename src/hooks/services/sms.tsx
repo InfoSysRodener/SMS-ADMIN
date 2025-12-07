@@ -8,8 +8,14 @@ type SendSMSPayload = {
 }
 
 type SendSMSResponse = {
-  success: boolean
-  message: string
+  umid: string
+  clientMessageId: string | null
+  destination: string
+  encoding: string
+  status: {
+    code: string
+    description: string
+  }
 }
 
 export const useSendSMS = () => {

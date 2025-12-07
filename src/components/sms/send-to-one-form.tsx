@@ -27,9 +27,18 @@ export function SendToOneForm() {
             text: values.text,
           })
 
-          if (response.success) {
-            toast.success(`SMS sent successfully to ${values.to}`)
+          const statusCode = response.status.code
+          const isSuccess = statusCode === 'QUEUED' || statusCode === 'SENT'
+
+          if (isSuccess) {
+            toast.success(`SMS sent successfully to ${response.destination}`, {
+              description: response.status.description,
+            })
             shouldResetRef.current = true
+          } else {
+            toast.warning(`SMS status: ${statusCode}`, {
+              description: response.status.description,
+            })
           }
         } catch (error) {
           toast.error(
