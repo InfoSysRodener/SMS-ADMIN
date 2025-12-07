@@ -24,14 +24,12 @@ export function SendToOneForm() {
           const response = await sendSMS({
             to: values.to,
             from: values.from,
-            message: values.text,
+            text: values.text,
           })
 
           if (response.success) {
             toast.success(`SMS sent successfully to ${values.to}`)
             shouldResetRef.current = true
-          } else {
-            toast.error(response.message || 'Failed to send SMS')
           }
         } catch (error) {
           toast.error(
@@ -69,20 +67,16 @@ export function SendToOneForm() {
               description="Your sender name or number"
             >
               <Input
-                placeholder="e.g., MyBusiness"
+                placeholder="e.g., MegaPerya"
                 className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
                 disabled={isSubmitting}
               />
             </Field>
 
             {/* To Field */}
-            <Field
-              name="to"
-              label="To (Recipient Number)"
-              description="Include country code"
-            >
+            <Field name="to" label="To (Recipient Number)">
               <Input
-                placeholder="e.g., +1234567890"
+                placeholder="e.g., +69898989898"
                 className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
                 disabled={isSubmitting}
               />

@@ -4,7 +4,7 @@ import { API_BASE_URL } from '@/config'
 type SendSMSPayload = {
   to: string
   from: string
-  message: string
+  text: string
 }
 
 type SendSMSResponse = {
@@ -46,7 +46,7 @@ export const useSendSMSBatch = () => {
       const formData = new FormData()
       formData.append('file', payload.file)
 
-      const response = await fetch(`${API_BASE_URL}/send-sms-batch`, {
+      const response = await fetch(`${API_BASE_URL}/upload-batch`, {
         method: 'POST',
         body: formData,
       })
